@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elysium X Team</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    overflow-x:hidden;
+    padding:20px;
+}
+
+.container{
+    width:95%;
+    max-width:950px;
+    border-radius:30px;
+}
+
+header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-size:42px;
+    letter-spacing:2px;
+    color:#ff2b2b;
+    text-shadow:0 0 25px rgba(255,0,0,0.7);
+}
+
+.home-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    border-radius:25px;
+    background:linear-gradient(145deg,#1a0000,#260000);
+    box-shadow:0 0 40px rgba(255,0,0,0.25);
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.divider{
+    width:80%;
+    height:2px;
+    background:rgba(255,0,0,0.5);
+    margin:20px auto;
+    border-radius:1px;
+}
+
+.games-container{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.games-card{
+    display:flex;
+    flex-direction:column;
+    background:rgba(20,20,20,0.95);
+    border-radius:14px;
+    padding:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    transition:0.3s ease;
+}
+
+.games-card:hover{
+    transform:scale(1.02);
+    box-shadow:0 0 30px rgba(255,0,0,0.6);
+}
+
+.games-card img{
+    width:100%;
+    max-height:320px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.games-card h3{
+    margin-top:10px;
+    font-size:20px;
+    color:#ff2b2b;
+}
+
+.games-card p{
+    margin-top:5px;
+    font-size:14px;
+    color:#ddd;
+}
+
+.script-card{
+    width:100%;
+    background:rgba(20,20,20,0.95);
+    border-radius:14px;
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+    overflow:hidden;
+    backdrop-filter:blur(10px);
+    padding-bottom:15px;
+    margin-top:20px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    padding:12px 15px;
+    background:linear-gradient(to right, #1c1c1c, #161616);
+    border-bottom:1px solid #2a2a2a;
+}
+
+.dots{
+    display:flex;
+    gap:8px;
+    margin-right:15px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.filename{
+    flex:1;
+    text-align:center;
+    color:#aaa;
+    font-size:14px;
+}
+
+.codebox{
+    padding:20px;
+    font-size:15px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    line-height:1.5;
+    user-select:text;
+    overflow:visible;
+}
+
+.codebox::selection{
+    background:#ff2e2e;
+    color:#fff;
+}
+
+.copy-container{
+    padding:15px;
+    display:flex;
+    justify-content:center;
+}
+
+.copy-btn{
+    background:linear-gradient(45deg,#ff1f1f,#ff4d4d);
+    border:none;
+    padding:10px 30px;
+    color:#fff;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.25s ease;
+    box-shadow:0 0 15px rgba(255,0,0,0.4);
+}
+
+.copy-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px rgba(255,0,0,0.6);
+}
+
+.copy-btn:active{
+    transform:scale(0.97);
+}
+
+footer{
+    text-align:center;
+    margin-top:40px;
+    font-size:13px;
+    color:#888;
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:28px;
+    }
+    .games-card img{
+        max-height:320px;
+    }
+    .codebox{
+        font-size:13px;
+        padding:15px;
+    }
+    .copy-btn{
+        width:100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+    <h1>Elysium X Team</h1>
+</header>
+
+<div class="home-card" id="credits">
+    <h2>Credits</h2>
+    <p>Atlas (Owner)<br>Deky (Co-Owner)</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="games-container" id="gamesContainer"></div>
+
+<div class="divider"></div>
+
+<div class="script-card">
+    <div class="topbar">
+        <div class="dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <div class="filename">Loader.lua</div>
+    </div>
+    <div class="codebox" id="codebox">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HS1HYDRAX7/Elysium-X-Rework/refs/heads/main/Elysium%20X%20Rework"))()
+    </div>
+    <div class="copy-container">
+        <button class="copy-btn" id="copyBtn">COPY</button>
+    </div>
+</div>
+
+<footer>© Elysium X Team</footer>
+</div>
+
+<script>
+lucide.createIcons();
+
+const copyBtn = document.getElementById("copyBtn");
+copyBtn.addEventListener("click", async ()=>{
+    const text = document.getElementById("codebox").textContent.trim();
+    try{ await navigator.clipboard.writeText(text); }
+    catch{
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position="fixed";
+        textarea.style.opacity="0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+    }
+    copyBtn.textContent = "COPIED!";
+    setTimeout(()=>copyBtn.textContent = "COPY",1500);
+});
+
+function GameSupported({Title, Desc, Thumbnail = "", ThumbnailSize = 150}){
+    const container = document.getElementById("gamesContainer");
+    if(ThumbnailSize>320) ThumbnailSize = 320;
+
+    const card = document.createElement("div");
+    card.className = "games-card";
+
+    if(Thumbnail){
+        const img = document.createElement("img");
+        img.src = Thumbnail;
+        img.alt = Title;
+        img.style.height = ThumbnailSize + "px";
+        card.appendChild(img);
+    }
+
+    const title = document.createElement("h3");
+    title.textContent = Title;
+    card.appendChild(title);
+
+    const desc = document.createElement("p");
+    desc.textContent = Desc;
+    card.appendChild(desc);
+
+    container.appendChild(card);
+}
+
+GameSupported({
+    Title: "Game Supported",
+    Desc: "Pressure in Roblox is an underwater horror game similar to Doors, where you explore while avoiding monsters and traps.",
+    Thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYncPQNJ9DckRLNqYD1A6mZFggx20apsuR-kw0sIPVGA&s=10",
+    ThumbnailSize: 120
+});
+
+</script>
+
+</body>
+</html>
